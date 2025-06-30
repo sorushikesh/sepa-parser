@@ -158,7 +158,6 @@ public class Camt053V3Generator {
             w.writeCharacters("GDSV");
             w.writeEndElement();
             w.writeEndElement(); // Fmly
-            w.writeEndElement(); // Fmly
             w.writeEndElement(); // Domn
             w.writeEndElement(); // BkTxCd
 
