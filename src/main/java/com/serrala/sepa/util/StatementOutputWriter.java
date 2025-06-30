@@ -9,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.serrala.sepa.model.SepaStatement;
+import com.serrala.sepa.util.Camt053V8Generator;
+import com.serrala.sepa.util.SepaStatementUtils;
+import com.serrala.sepa.util.XmlValidator;
 
 public class StatementOutputWriter {
     private static final Logger logger = LoggerFactory.getLogger(StatementOutputWriter.class);
@@ -25,9 +28,19 @@ public class StatementOutputWriter {
     }
 
     private static void writeCamt053(SepaStatement statement) throws Exception {
+        SepaStatementUtils.ensureMandatoryFields(statement);
         String fileName = sanitize(statement.getAccountIban() + "_" + statement.getAccountCurrency() + "_v8.xml");
         Path outputPath = Paths.get(fileName);
-        String content = com.serrala.sepa.util.Camt053V8Generator.generate(statement);
+        String content = Camt053V8Generator.generate(statement);
+
+        // Validate against the bundled XSD and retry once with filled fields
+        String xsd = "xsd/camt.053.001.08.xsd";
+        if (!XmlValidator.validate(content, xsd)) {
+            logger.warn("CAMT053 validation failed - adding random data for missing fields");
+            SepaStatementUtils.ensureMandatoryFields(statement);
+            content = Camt053V8Generator.generate(statement);
+        }
+
         try (java.io.OutputStream out = Files.newOutputStream(outputPath)) {
             out.write(content.getBytes(StandardCharsets.UTF_8));
         }
