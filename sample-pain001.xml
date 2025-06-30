@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09 pain.001.001.09.xsd">
+ <CstmrCdtTrfInitn>
+  <GrpHdr>
+   <MsgId>MSG1090</MsgId>
+   <CreDtTm>2025-04-07T12:57:25</CreDtTm>
+   <NbOfTxs>2</NbOfTxs>
+   <CtrlSum>4500.0</CtrlSum>
+   <InitgPty>
+    <Nm>Bayerland HealthTech GmbH</Nm>
+   </InitgPty>
+  </GrpHdr>
+  <PmtInf>
+   <PmtInfId>PMTINF1</PmtInfId>
+   <PmtMtd>TRF</PmtMtd>
+   <NbOfTxs>2</NbOfTxs>
+   <CtrlSum>4500.0</CtrlSum>
+   <PmtTpInf>
+    <InstrPrty>NORM</InstrPrty>
+    <SvcLvl>
+     <Cd>SEPA</Cd>
+    </SvcLvl>
+   </PmtTpInf>
+   <ReqdExctnDt>
+    <Dt>2025-04-08</Dt>
+   </ReqdExctnDt>
+   <Dbtr>
+    <Nm>Bayerland HealthTech GmbH</Nm>
+   </Dbtr>
+   <DbtrAcct>
+    <Id>
+     <IBAN>DE41500105177649559137</IBAN>
+    </Id>
+    <Ccy>EUR</Ccy>
+   </DbtrAcct>
+   <DbtrAgt>
+    <FinInstnId>
+     <BIC>BYLADEM1001</BIC>
+    </FinInstnId>
+   </DbtrAgt>
+   <CdtTrfTxInf>
+    <PmtId>
+     <InstrId>INSTR1</InstrId>
+     <EndToEndId>f7f91cad040a43caa30c104f9fa9b848</EndToEndId>
+    </PmtId>
+    <Amt>
+     <InstdAmt Ccy="EUR">3500.0</InstdAmt>
+    </Amt>
+    <CdtrAgt>
+     <FinInstnId>
+      <BIC>DEUTDEFF</BIC>
+     </FinInstnId>
+    </CdtrAgt>
+    <Cdtr>
+     <Nm>GreenTech Solutions AG</Nm>
+    </Cdtr>
+    <CdtrAcct>
+     <Id>
+      <IBAN>DE10500105179668777364</IBAN>
+     </Id>
+    </CdtrAcct>
+    <RmtInf>
+     <Ustrd>Consulting Fee 1</Ustrd>
+    </RmtInf>
+    <Purp>
+     <Cd>PURP1</Cd>
+    </Purp>
+   </CdtTrfTxInf>
+   <CdtTrfTxInf>
+    <PmtId>
+     <InstrId>INSTR2</InstrId>
+     <EndToEndId>TXN2END2</EndToEndId>
+    </PmtId>
+    <Amt>
+     <InstdAmt Ccy="EUR">1000.0</InstdAmt>
+    </Amt>
+    <CdtrAgt>
+     <FinInstnId>
+      <BIC>COBADEFF</BIC>
+     </FinInstnId>
+    </CdtrAgt>
+    <Cdtr>
+     <Nm>BlueOcean GmbH</Nm>
+    </Cdtr>
+    <CdtrAcct>
+     <Id>
+      <IBAN>DE22500105171234567890</IBAN>
+     </Id>
+    </CdtrAcct>
+    <RmtInf>
+     <Ustrd>Consulting Fee 2</Ustrd>
+    </RmtInf>
+    <Purp>
+     <Cd>PURP2</Cd>
+    </Purp>
+   </CdtTrfTxInf>
+  </PmtInf>
+ </CstmrCdtTrfInitn>
+</Document>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.052.001.08">
+  <BkToCstmrAcctRpt>
+    <GrpHdr>
+      <MsgId>Olk4IrXBNoIa0ADXKq5eefY6FPftxnTfUXE</MsgId>
+      <CreDtTm>2025-06-12T19:04:22</CreDtTm>
+    </GrpHdr>
+    <Rpt>
+      <Id>Olk4IrXBNoIa0ADXKq5eefY6FPftxnTfUXE</Id>
+      <ElctrncSeqNb>35804206402897164</ElctrncSeqNb>
+      <LglSeqNb>632107371412135040</LglSeqNb>
+      <CreDtTm>2025-06-12T19:04:22</CreDtTm>
+      <Acct>
+        <Id><IBAN>DE41500105177649559137</IBAN></Id>
+        <Ccy>EUR</Ccy>
+      </Acct>
+      <Ntry>
+        <Amt Ccy="EUR">3500.0</Amt>
+        <NtryDtls>
+          <TxDtls>
+            <Refs><EndToEndId>f7f91cad040a43caa30c104f9fa9b848</EndToEndId></Refs>
+            <RltdPties>
+              <Dbtr><Nm>Bayerland HealthTech GmbH</Nm></Dbtr>
+              <DbtrAcct><Id><IBAN>DE41500105177649559137</IBAN></Id></DbtrAcct>
+              <Cdtr><Nm>GreenTech Solutions AG</Nm></Cdtr>
+              <CdtrAcct><Id><IBAN>DE10500105179668777364</IBAN></Id></CdtrAcct>
+            </RltdPties>
+            <RmtInf><Ustrd>Consulting Fee 1</Ustrd></RmtInf>
+            <Purp><Cd>PURP1</Cd></Purp>
+          </TxDtls>
+        </NtryDtls>
+        <Amt Ccy="EUR">1000.0</Amt>
+        <NtryDtls>
+          <TxDtls>
+            <Refs><EndToEndId>TXN2END2</EndToEndId></Refs>
+            <RltdPties>
+              <Dbtr><Nm>Bayerland HealthTech GmbH</Nm></Dbtr>
+              <DbtrAcct><Id><IBAN>DE41500105177649559137</IBAN></Id></DbtrAcct>
+              <Cdtr><Nm>BlueOcean GmbH</Nm></Cdtr>
+              <CdtrAcct><Id><IBAN>DE22500105171234567890</IBAN></Id></CdtrAcct>
+            </RltdPties>
+            <RmtInf><Ustrd>Consulting Fee 2</Ustrd></RmtInf>
+            <Purp><Cd>PURP2</Cd></Purp>
+          </TxDtls>
+        </NtryDtls>
+      </Ntry>
+    </Rpt>
+  </BkToCstmrAcctRpt>
+</Document>
