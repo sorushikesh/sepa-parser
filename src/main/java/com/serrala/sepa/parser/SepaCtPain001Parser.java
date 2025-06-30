@@ -77,10 +77,25 @@ public class SepaCtPain001Parser implements StatementParser {
                     Element strd = getChildElementNS(rmtInf, "Strd");
                     if (strd != null) {
                         ustrd = getElementTextNS(strd, "Ustrd");
+                        if (ustrd == null) {
+                            ustrd = strd.getTextContent();
+                        }
                     }
                 }
             }
             tx.setRemittanceInfo(ustrd);
+            // Booking/Value dates from ReqdExctnDt of parent PmtInf
+            Node parentNode = txElem.getParentNode();
+            while (parentNode != null && parentNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element parentElem = (Element) parentNode;
+                if ("PmtInf".equals(parentElem.getLocalName())) {
+                    String exctnDt = getElementTextNS(parentElem, "ReqdExctnDt");
+                    tx.setBookingDate(exctnDt);
+                    tx.setValueDate(exctnDt);
+                    break;
+                }
+                parentNode = parentNode.getParentNode();
+            }
             tx.setAmount(getElementTextNS(txElem, "InstdAmt"));
             tx.setCurrency(getElementAttributeNS(txElem, "InstdAmt", "Ccy"));
             tx.setEndToEndId(getElementTextNS(txElem, "EndToEndId"));

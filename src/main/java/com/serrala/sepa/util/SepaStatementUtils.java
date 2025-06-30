@@ -55,6 +55,12 @@ public class SepaStatementUtils {
                 if (isBlank(tx.getEndToEndId())) {
                     tx.setEndToEndId("ID" + ((int) (Math.random() * 1_000_000)));
                 }
+                if (isBlank(tx.getBookingDate())) {
+                    tx.setBookingDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+                }
+                if (isBlank(tx.getValueDate())) {
+                    tx.setValueDate(tx.getBookingDate());
+                }
             }
         }
     }

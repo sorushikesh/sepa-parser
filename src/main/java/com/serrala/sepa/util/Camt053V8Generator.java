@@ -142,6 +142,21 @@ public class Camt053V8Generator {
             w.writeCharacters("BOOK");
             w.writeEndElement(); // Sts
 
+            if (tx.getBookingDate() != null) {
+                w.writeStartElement("BookgDt");
+                w.writeStartElement("Dt");
+                w.writeCharacters(tx.getBookingDate());
+                w.writeEndElement();
+                w.writeEndElement();
+            }
+            if (tx.getValueDate() != null) {
+                w.writeStartElement("ValDt");
+                w.writeStartElement("Dt");
+                w.writeCharacters(tx.getValueDate());
+                w.writeEndElement();
+                w.writeEndElement();
+            }
+
             // Minimal bank transaction code
             w.writeStartElement("BkTxCd");
             w.writeStartElement("Domn");
