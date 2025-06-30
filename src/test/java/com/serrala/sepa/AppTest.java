@@ -159,6 +159,28 @@ public class AppTest
         assertTrue(mt940.contains(":86:Direct Debit for Invoice 2 DBTR:Another Debtor CDTR:TechnoGmbH Germany-UI"));
     }
 
+    /**
+     * Verify that the command line application generates a statement file
+     * when processing the sample pain.001 message.
+     */
+    public void testPain001CliCreatesStatementFile() throws Exception {
+        java.io.File pain001File = new java.io.File("sample-pain001.xml");
+        assertTrue("Sample pain.001 file should exist", pain001File.exists());
+
+        java.io.File statementFile = new java.io.File("DE41500105177649559137_EUR.sta");
+        if (statementFile.exists()) {
+            statementFile.delete();
+        }
+        assertFalse("Statement file should not exist before execution", statementFile.exists());
+
+        com.serrala.sepa.App.main(new String[] { pain001File.getPath() });
+
+        assertTrue("Statement file should be created", statementFile.exists());
+        String content = new String(java.nio.file.Files.readAllBytes(statementFile.toPath()),
+                                    java.nio.charset.StandardCharsets.UTF_8);
+        assertTrue(content.contains(":25:DE41500105177649559137"));
+    }
+
     // Copied from App.java for test context
     private static String extractRootNamespace(java.io.File xmlFile) throws Exception {
         javax.xml.parsers.DocumentBuilderFactory dbf = javax.xml.parsers.DocumentBuilderFactory.newInstance();
