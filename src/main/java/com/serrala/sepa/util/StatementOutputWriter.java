@@ -13,10 +13,15 @@ import com.serrala.sepa.model.SepaStatement;
 public class StatementOutputWriter {
     private static final Logger logger = LoggerFactory.getLogger(StatementOutputWriter.class);
     public static void writeAllOutputs(SepaStatement statement) throws Exception {
-        writeCamt053(statement);
-        writeCamt052(statement);
-        writeMt940(statement);
-        writeMt942(statement);
+        writeOutputs(statement, true, true, true, true);
+    }
+
+    public static void writeOutputs(SepaStatement statement, boolean camt053, boolean camt052,
+                                    boolean mt940, boolean mt942) throws Exception {
+        if (camt053) writeCamt053(statement);
+        if (camt052) writeCamt052(statement);
+        if (mt940) writeMt940(statement);
+        if (mt942) writeMt942(statement);
     }
 
     private static void writeCamt053(SepaStatement statement) throws Exception {

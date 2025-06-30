@@ -3,7 +3,9 @@
 This project provides a Java library to parse SEPA-CT (pain.001) payment files and extract information needed for account statements (such as account number, IBAN, transaction details, etc.).
 
 ## Features
-- Parse SEPA-CT (pain.001) XML files using JAXB
+- Parse SEPA-CT (pain.001) XML files with a StAX streaming parser
+- JAXB-annotated statement model for easy marshalling
+- Generate CAMT and MT outputs using XMLStreamWriter
 - Extract account and transaction details for statement generation
 
 ## Getting Started

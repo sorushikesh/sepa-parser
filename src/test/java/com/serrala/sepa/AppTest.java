@@ -92,13 +92,14 @@ public class AppTest
             isMt101 = isMt101File(pain001File);
         }
         com.serrala.sepa.parser.StatementParser parser = com.serrala.sepa.parser.ParserFactory.getParser(pain001File, rootNamespace, isMt101);
+        assertTrue("Parser should be StAX implementation", parser instanceof com.serrala.sepa.parser.SepaCtPain001StaxParser);
         com.serrala.sepa.model.SepaStatement statement = parser.parse(pain001File);
         assertNotNull("Statement should not be null", statement);
         assertEquals("Account IBAN should match", "DE41500105177649559137", statement.getAccountIban());
         assertEquals("Account Currency should match", "EUR", statement.getAccountCurrency());
         assertEquals("Should have 2 transactions", 2, statement.getTransactions().size());
 
-        com.serrala.sepa.util.StatementOutputWriter.writeAllOutputs(statement);
+        com.serrala.sepa.util.StatementOutputWriter.writeOutputs(statement, true, false, true, false);
         assertTrue(new java.io.File("DE41500105177649559137_EUR_v8.xml").exists());
         assertTrue(new java.io.File("DE41500105177649559137_EUR_camt052.xml").exists());
         assertTrue(new java.io.File("DE41500105177649559137_EUR.sta").exists());
