@@ -189,12 +189,14 @@ public class Camt053V3Generator {
                     && !tx.getCreditorIban().equalsIgnoreCase("null")) {
                 debtorIban = tx.getCreditorIban();
             }
+            // CAMT053 v3 uses PartyIdentification43 for debtor and creditor,
+            // which expects the name directly under the Dbtr/Cdtr element
             w.writeStartElement("Dbtr");
-            w.writeStartElement("Pty");
             w.writeStartElement("Nm");
-            w.writeCharacters(debtorName == null || debtorName.trim().isEmpty() || debtorName.equalsIgnoreCase("null")
-                    ? "UNKNOWN" : debtorName);
-            w.writeEndElement();
+            w.writeCharacters(
+                    debtorName == null || debtorName.trim().isEmpty() || debtorName.equalsIgnoreCase("null")
+                            ? "UNKNOWN"
+                            : debtorName);
             w.writeEndElement();
             w.writeEndElement(); // Dbtr
             w.writeStartElement("DbtrAcct");
@@ -206,11 +208,11 @@ public class Camt053V3Generator {
             w.writeEndElement();
             w.writeEndElement(); // DbtrAcct
             w.writeStartElement("Cdtr");
-            w.writeStartElement("Pty");
             w.writeStartElement("Nm");
-            w.writeCharacters(tx.getCreditorName() == null || tx.getCreditorName().trim().isEmpty()
-                    ? "UNKNOWN" : tx.getCreditorName());
-            w.writeEndElement();
+            w.writeCharacters(
+                    tx.getCreditorName() == null || tx.getCreditorName().trim().isEmpty()
+                            ? "UNKNOWN"
+                            : tx.getCreditorName());
             w.writeEndElement();
             w.writeEndElement(); // Cdtr
             w.writeStartElement("CdtrAcct");
