@@ -2,13 +2,35 @@ package com.serrala.sepa.model;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "statement")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class SepaStatement {
+    @XmlElement(name = "accountIban")
     private String accountIban;
+
+    @XmlElement(name = "accountCurrency")
     private String accountCurrency;
+
+    @XmlElement(name = "statementId")
     private String statementId;
+
+    @XmlElement(name = "creationDateTime")
     private String creationDateTime;
+
+    @XmlElement(name = "periodFrom")
     private String periodFrom;
+
+    @XmlElement(name = "periodTo")
     private String periodTo;
+
+    @XmlElementWrapper(name = "transactions")
+    @XmlElement(name = "transaction")
     private List<SepaTransaction> transactions;
 
     public String getAccountIban() { return accountIban; }
