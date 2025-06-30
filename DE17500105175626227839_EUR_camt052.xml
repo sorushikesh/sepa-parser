@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.052.001.08">
+  <BkToCstmrAcctRpt>
+    <GrpHdr>
+      <MsgId>m4Ew2nybOVtmLyE4mzDjJG32jNUrJPXK02m</MsgId>
+      <CreDtTm>2025-06-12T19:10:29</CreDtTm>
+    </GrpHdr>
+    <Rpt>
+      <Id>m4Ew2nybOVtmLyE4mzDjJG32jNUrJPXK02m</Id>
+      <ElctrncSeqNb>197618858591358848</ElctrncSeqNb>
+      <LglSeqNb>773016744501920256</LglSeqNb>
+      <CreDtTm>2025-06-12T19:10:29</CreDtTm>
+      <Acct>
+        <Id><IBAN>DE17500105175626227839</IBAN></Id>
+        <Ccy>EUR</Ccy>
+      </Acct>
+      <Ntry>
+        <Amt Ccy="EUR">98.75</Amt>
+        <NtryDtls>
+          <TxDtls>
+            <Refs><EndToEndId>fd343fb1ed964c669ed72a568110ef29</EndToEndId></Refs>
+            <RltdPties>
+              <Dbtr><Nm>Test Partner Automation</Nm></Dbtr>
+              <DbtrAcct><Id><IBAN>DE17500105175626227839</IBAN></Id></DbtrAcct>
+              <Cdtr><Nm>TechnoGmbH Germany-UI</Nm></Cdtr>
+              <CdtrAcct><Id><IBAN>DE63501350784598944188</IBAN></Id></CdtrAcct>
+            </RltdPties>
+            <RmtInf><Ustrd>Direct Debit for Invoice 1</Ustrd></RmtInf>
+            <Purp><Cd>INVC</Cd></Purp>
+          </TxDtls>
+        </NtryDtls>
+        <Amt Ccy="EUR">150.00</Amt>
+        <NtryDtls>
+          <TxDtls>
+            <Refs><EndToEndId>TXN2END2</EndToEndId></Refs>
+            <RltdPties>
+              <Dbtr><Nm>Another Debtor</Nm></Dbtr>
+              <DbtrAcct><Id><IBAN>DE44500105170000000000</IBAN></Id></DbtrAcct>
+              <Cdtr><Nm>TechnoGmbH Germany-UI</Nm></Cdtr>
+              <CdtrAcct><Id><IBAN>DE63501350784598944188</IBAN></Id></CdtrAcct>
+            </RltdPties>
+            <RmtInf><Ustrd>Direct Debit for Invoice 2</Ustrd></RmtInf>
+            <Purp><Cd>SALR</Cd></Purp>
+          </TxDtls>
+        </NtryDtls>
+      </Ntry>
+    </Rpt>
+  </BkToCstmrAcctRpt>
+</Document>

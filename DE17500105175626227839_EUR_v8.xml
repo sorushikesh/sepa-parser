@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.08">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>m4Ew2nybOVtmLyE4mzDjJG32jNUrJPXK02m</MsgId>
+      <CreDtTm>2025-06-12T19:10:29</CreDtTm>
+    </GrpHdr>
+    <Stmt>
+      <Id>m4Ew2nybOVtmLyE4mzDjJG32jNUrJPXK02m</Id>
+      <ElctrncSeqNb>943631273884214784</ElctrncSeqNb>
+      <LglSeqNb>169805740427931840</LglSeqNb>
+      <CreDtTm>2025-06-12T19:10:29</CreDtTm>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="EUR">0.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt>2025-06-12</Dt>
+      </Bal>
+      <Ntry>
+        <Amt Ccy="EUR">98.75</Amt>
+        <NtryDtls>
+          <TxDtls>
+            <Refs><EndToEndId>fd343fb1ed964c669ed72a568110ef29</EndToEndId></Refs>
+            <RltdPties>
+              <Dbtr><Nm>Test Partner Automation</Nm></Dbtr>
+              <DbtrAcct><Id><IBAN>DE17500105175626227839</IBAN></Id></DbtrAcct>
+              <Cdtr><Nm>TechnoGmbH Germany-UI</Nm></Cdtr>
+              <CdtrAcct><Id><IBAN>DE63501350784598944188</IBAN></Id></CdtrAcct>
+            </RltdPties>
+            <RmtInf><Ustrd>Direct Debit for Invoice 1</Ustrd></RmtInf>
+            <Purp><Cd>INVC</Cd></Purp>
+          </TxDtls>
+        </NtryDtls>
+        <Amt Ccy="EUR">150.00</Amt>
+        <NtryDtls>
+          <TxDtls>
+            <Refs><EndToEndId>TXN2END2</EndToEndId></Refs>
+            <RltdPties>
+              <Dbtr><Nm>Another Debtor</Nm></Dbtr>
+              <DbtrAcct><Id><IBAN>DE44500105170000000000</IBAN></Id></DbtrAcct>
+              <Cdtr><Nm>TechnoGmbH Germany-UI</Nm></Cdtr>
+              <CdtrAcct><Id><IBAN>DE63501350784598944188</IBAN></Id></CdtrAcct>
+            </RltdPties>
+            <RmtInf><Ustrd>Direct Debit for Invoice 2</Ustrd></RmtInf>
+            <Purp><Cd>SALR</Cd></Purp>
+          </TxDtls>
+        </NtryDtls>
+      </Ntry>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="EUR">0.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt>2025-06-12</Dt>
+      </Bal>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document>
