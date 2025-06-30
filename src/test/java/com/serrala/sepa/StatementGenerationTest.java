@@ -44,6 +44,7 @@ public class StatementGenerationTest extends TestCase {
 
             String base = statement.getAccountIban() + "_" + statement.getAccountCurrency();
             assertTrue(new File(tempDir.toFile(), base + "_v8.xml").exists());
+            assertTrue(new File(tempDir.toFile(), base + "_v3.xml").exists());
             assertTrue(new File(tempDir.toFile(), base + "_camt052.xml").exists());
             assertTrue(new File(tempDir.toFile(), base + ".sta").exists());
             assertTrue(new File(tempDir.toFile(), base + "_mt942.sta").exists());
