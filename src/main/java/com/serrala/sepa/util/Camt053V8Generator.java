@@ -64,6 +64,21 @@ public class Camt053V8Generator {
             w.writeEndElement();
         }
 
+        // Account information is mandatory before any balances
+        w.writeStartElement("Acct");
+        w.writeStartElement("Id");
+        w.writeStartElement("IBAN");
+        w.writeCharacters(statement.getAccountIban() == null || statement.getAccountIban().trim().isEmpty()
+                ? "UNKNOWN" : statement.getAccountIban());
+        w.writeEndElement(); // IBAN
+        w.writeEndElement(); // Id
+        if (statement.getAccountCurrency() != null && !statement.getAccountCurrency().isEmpty()) {
+            w.writeStartElement("Ccy");
+            w.writeCharacters(statement.getAccountCurrency());
+            w.writeEndElement();
+        }
+        w.writeEndElement(); // Acct
+
         w.writeStartElement("Bal");
         w.writeStartElement("Tp");
         w.writeStartElement("CdOrPrtry");
@@ -80,9 +95,11 @@ public class Camt053V8Generator {
         w.writeCharacters("CRDT");
         w.writeEndElement();
         w.writeStartElement("Dt");
+        w.writeStartElement("Dt");
         w.writeCharacters(statement.getPeriodFrom() != null ? statement.getPeriodFrom()
                 : new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()));
-        w.writeEndElement();
+        w.writeEndElement(); // Dt
+        w.writeEndElement(); // DateAndDateTime2Choice
         w.writeEndElement(); // Bal
 
         w.writeStartElement("Ntry");
@@ -92,6 +109,34 @@ public class Camt053V8Generator {
             w.writeAttribute("Ccy", tx.getCurrency());
             w.writeCharacters(tx.getAmount());
             w.writeEndElement();
+
+            w.writeStartElement("CdtDbtInd");
+            w.writeCharacters(tx.getAmount().startsWith("-") ? "DBIT" : "CRDT");
+            w.writeEndElement();
+
+            w.writeStartElement("Sts");
+            w.writeStartElement("Cd");
+            w.writeCharacters("BOOK");
+            w.writeEndElement();
+            w.writeEndElement(); // Sts
+
+            // Minimal bank transaction code
+            w.writeStartElement("BkTxCd");
+            w.writeStartElement("Domn");
+            w.writeStartElement("Cd");
+            w.writeCharacters("PMNT");
+            w.writeEndElement();
+            w.writeStartElement("Fmly");
+            w.writeStartElement("Cd");
+            w.writeCharacters("RCDT");
+            w.writeEndElement();
+            w.writeStartElement("SubFmlyCd");
+            w.writeCharacters("GDSV");
+            w.writeEndElement();
+            w.writeEndElement(); // Fmly
+            w.writeEndElement(); // Domn
+            w.writeEndElement(); // BkTxCd
+
             w.writeStartElement("NtryDtls");
             w.writeStartElement("TxDtls");
             w.writeStartElement("Refs");
@@ -114,9 +159,11 @@ public class Camt053V8Generator {
                 debtorIban = tx.getCreditorIban();
             }
             w.writeStartElement("Dbtr");
+            w.writeStartElement("Pty");
             w.writeStartElement("Nm");
             w.writeCharacters(debtorName == null || debtorName.trim().isEmpty() || debtorName.equalsIgnoreCase("null")
                     ? "UNKNOWN" : debtorName);
+            w.writeEndElement();
             w.writeEndElement();
             w.writeEndElement(); // Dbtr
             w.writeStartElement("DbtrAcct");
@@ -128,8 +175,11 @@ public class Camt053V8Generator {
             w.writeEndElement();
             w.writeEndElement(); // DbtrAcct
             w.writeStartElement("Cdtr");
+            w.writeStartElement("Pty");
             w.writeStartElement("Nm");
-            w.writeCharacters(tx.getCreditorName());
+            w.writeCharacters(tx.getCreditorName() == null || tx.getCreditorName().trim().isEmpty()
+                    ? "UNKNOWN" : tx.getCreditorName());
+            w.writeEndElement();
             w.writeEndElement();
             w.writeEndElement(); // Cdtr
             w.writeStartElement("CdtrAcct");
@@ -141,17 +191,17 @@ public class Camt053V8Generator {
             w.writeEndElement(); // CdtrAcct
             w.writeEndElement(); // RltdPties
 
-            w.writeStartElement("RmtInf");
-            w.writeStartElement("Ustrd");
-            w.writeCharacters(tx.getRemittanceInfo() == null || "null".equalsIgnoreCase(tx.getRemittanceInfo()) ? ""
-                    : tx.getRemittanceInfo());
+            w.writeStartElement("Purp");
+            w.writeStartElement("Cd");
+            w.writeCharacters(tx.getPurposeCode() == null || "null".equalsIgnoreCase(tx.getPurposeCode())
+                    || tx.getPurposeCode().trim().isEmpty() ? "OTHR" : tx.getPurposeCode());
             w.writeEndElement();
             w.writeEndElement();
 
-            w.writeStartElement("Purp");
-            w.writeStartElement("Cd");
-            w.writeCharacters(tx.getPurposeCode() == null || "null".equalsIgnoreCase(tx.getPurposeCode()) ? ""
-                    : tx.getPurposeCode());
+            w.writeStartElement("RmtInf");
+            w.writeStartElement("Ustrd");
+            w.writeCharacters(tx.getRemittanceInfo() == null || "null".equalsIgnoreCase(tx.getRemittanceInfo())
+                    || tx.getRemittanceInfo().trim().isEmpty() ? "UNKNOWN" : tx.getRemittanceInfo());
             w.writeEndElement();
             w.writeEndElement();
 
@@ -176,8 +226,10 @@ public class Camt053V8Generator {
         w.writeCharacters("CRDT");
         w.writeEndElement();
         w.writeStartElement("Dt");
+        w.writeStartElement("Dt");
         w.writeCharacters(statement.getPeriodTo() != null ? statement.getPeriodTo()
                 : new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()));
+        w.writeEndElement(); // Dt
         w.writeEndElement();
         w.writeEndElement(); // Bal
         w.writeEndElement(); // Stmt
