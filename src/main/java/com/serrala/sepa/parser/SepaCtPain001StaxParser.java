@@ -36,6 +36,7 @@ public class SepaCtPain001StaxParser implements StatementParser {
             SepaTransaction currentTx = null;
             String lastText = null;
             String instdAmtCurrency = null;
+            String reqdExctnDt = null;
             while (reader.hasNext()) {
                 XMLEvent event = reader.nextEvent();
                 if (event.isStartElement()) {
@@ -44,6 +45,10 @@ public class SepaCtPain001StaxParser implements StatementParser {
                     path.push(local);
                     if ("CdtTrfTxInf".equals(local)) {
                         currentTx = new SepaTransaction();
+                        if (reqdExctnDt != null) {
+                            currentTx.setBookingDate(reqdExctnDt);
+                            currentTx.setValueDate(reqdExctnDt);
+                        }
                     } else if ("InstdAmt".equals(local)) {
                         Attribute attr = start.getAttributeByName(javax.xml.namespace.QName.valueOf("Ccy"));
                         if (attr != null) {
@@ -67,6 +72,8 @@ public class SepaCtPain001StaxParser implements StatementParser {
                                 statement.setAccountIban(lastText.trim());
                             } else if ("Ccy".equals(local) && "DbtrAcct".equals(parent)) {
                                 statement.setAccountCurrency(lastText.trim());
+                            } else if ("ReqdExctnDt".equals(local)) {
+                                reqdExctnDt = lastText.trim();
                             }
                         } else {
                             // Transaction fields
@@ -88,6 +95,9 @@ public class SepaCtPain001StaxParser implements StatementParser {
                                 currentTx.setEndToEndId(lastText.trim());
                             } else if ("Ustrd".equals(local)) {
                                 currentTx.setRemittanceInfo(lastText.trim());
+                            } else if ("Strd".equals(local) && "RmtInf".equals(parent) &&
+                                       (currentTx.getRemittanceInfo() == null || currentTx.getRemittanceInfo().isEmpty())) {
+                                currentTx.setRemittanceInfo(lastText.trim());
                             } else if ("Cd".equals(local) && "Purp".equals(parent)) {
                                 currentTx.setPurposeCode(lastText.trim());
                             }
@@ -96,6 +106,9 @@ public class SepaCtPain001StaxParser implements StatementParser {
                     if ("CdtTrfTxInf".equals(local) && currentTx != null) {
                         transactions.add(currentTx);
                         currentTx = null;
+                    }
+                    if ("PmtInf".equals(local)) {
+                        reqdExctnDt = null;
                     }
                     path.pop();
                     lastText = "";
