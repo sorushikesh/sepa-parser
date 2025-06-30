@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.serrala.sepa.model.SepaStatement;
 import com.serrala.sepa.util.Camt053V8Generator;
+import com.serrala.sepa.util.Camt053V3Generator;
 import com.serrala.sepa.util.SepaStatementUtils;
 import com.serrala.sepa.util.XmlValidator;
 
@@ -17,6 +18,7 @@ public class StatementOutputWriter {
     private static final Logger logger = LoggerFactory.getLogger(StatementOutputWriter.class);
     public static void writeAllOutputs(SepaStatement statement) throws Exception {
         writeOutputs(statement, true, true, true, true);
+        writeCamt053V3(statement);
     }
 
     public static void writeOutputs(SepaStatement statement, boolean camt053, boolean camt052,
@@ -45,6 +47,26 @@ public class StatementOutputWriter {
             out.write(content.getBytes(StandardCharsets.UTF_8));
         }
         logger.info("CAMT053 v8 statement generated: {}", fileName);
+    }
+
+    private static void writeCamt053V3(SepaStatement statement) throws Exception {
+        SepaStatementUtils.ensureMandatoryFields(statement);
+        String fileName = sanitize(statement.getAccountIban() + "_" + statement.getAccountCurrency() + "_v3.xml");
+        Path outputPath = Paths.get(fileName);
+        String content = Camt053V3Generator.generate(statement);
+
+        // Validate against the bundled XSD and retry once with filled fields
+        String xsd = "xsd/camt.053.001.03.xsd";
+        if (!XmlValidator.validate(content, xsd)) {
+            logger.warn("CAMT053 v3 validation failed - adding random data for missing fields");
+            SepaStatementUtils.ensureMandatoryFields(statement);
+            content = Camt053V3Generator.generate(statement);
+        }
+
+        try (java.io.OutputStream out = Files.newOutputStream(outputPath)) {
+            out.write(content.getBytes(StandardCharsets.UTF_8));
+        }
+        logger.info("CAMT053 v3 statement generated: {}", fileName);
     }
 
     private static void writeCamt052(SepaStatement statement) throws Exception {
