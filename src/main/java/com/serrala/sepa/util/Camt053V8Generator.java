@@ -126,9 +126,9 @@ public class Camt053V8Generator {
         w.writeEndElement();
         w.writeEndElement(); // Bal
 
-        w.writeStartElement("Ntry");
         List<SepaTransaction> txs = statement.getTransactions();
         for (SepaTransaction tx : txs) {
+            w.writeStartElement("Ntry");
             w.writeStartElement("Amt");
             w.writeAttribute("Ccy", tx.getCurrency());
             w.writeCharacters(tx.getAmount());
@@ -139,9 +139,7 @@ public class Camt053V8Generator {
             w.writeEndElement();
 
             w.writeStartElement("Sts");
-            w.writeStartElement("Cd");
             w.writeCharacters("BOOK");
-            w.writeEndElement();
             w.writeEndElement(); // Sts
 
             // Minimal bank transaction code
@@ -168,6 +166,15 @@ public class Camt053V8Generator {
             w.writeCharacters(tx.getEndToEndId());
             w.writeEndElement(); // EndToEndId
             w.writeEndElement(); // Refs
+
+            w.writeStartElement("Amt");
+            w.writeAttribute("Ccy", tx.getCurrency());
+            w.writeCharacters(tx.getAmount());
+            w.writeEndElement();
+
+            w.writeStartElement("CdtDbtInd");
+            w.writeCharacters(tx.getAmount().startsWith("-") ? "DBIT" : "CRDT");
+            w.writeEndElement();
 
             w.writeStartElement("RltdPties");
             String debtorName = tx.getDebtorName();
@@ -231,8 +238,8 @@ public class Camt053V8Generator {
 
             w.writeEndElement(); // TxDtls
             w.writeEndElement(); // NtryDtls
+            w.writeEndElement(); // Ntry
         }
-        w.writeEndElement(); // Ntry
         w.writeEndElement(); // Stmt
         w.writeEndElement(); // BkToCstmrStmt
         w.writeEndElement(); // Document
