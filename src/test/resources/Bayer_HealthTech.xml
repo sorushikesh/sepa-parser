@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09 pain.001.001.09.xsd">
+ <CstmrCdtTrfInitn>
+  <GrpHdr>
+   <MsgId>MSG1090</MsgId>
+   <CreDtTm>2025-04-07T12:57:25</CreDtTm>
+   <NbOfTxs>1</NbOfTxs>
+   <CtrlSum>3500.0</CtrlSum>
+   <InitgPty>
+    <Nm>Bayerland HealthTech GmbH</Nm>
+   </InitgPty>
+  </GrpHdr>
+  <PmtInf>
+   <PmtInfId>86484c152b1c4a79ae412b2696002146</PmtInfId>
+   <PmtMtd>TRF</PmtMtd>
+   <BtchBookg>false</BtchBookg>
+   <NbOfTxs>1</NbOfTxs>
+   <CtrlSum>3500.0</CtrlSum>
+   <PmtTpInf>
+    <InstrPrty>NORM</InstrPrty>
+    <SvcLvl>
+     <Cd>SEPA</Cd>
+    </SvcLvl>
+   </PmtTpInf>
+   <ReqdExctnDt>
+    <Dt>2025-05-23</Dt>
+   </ReqdExctnDt>
+   <Dbtr>
+    <Nm>Bayerland HealthTech GmbH</Nm>
+    <PstlAdr>
+     <Dept>HealthTech Innovation</Dept>
+     <SubDept>Digital Health Solutions</SubDept>
+     <StrtNm>Sendlinger Strasse</StrtNm>
+     <BldgNb>20</BldgNb>
+     <BldgNm>MedInnovate Center</BldgNm>
+     <Flr>5th Floo</Flr>
+     <PstBx>80331</PstBx>
+     <Room>508</Room>
+     <PstCd>80331</PstCd>
+     <TwnNm>Munich</TwnNm>
+     <TwnLctnNm>Altstadt-Lehel</TwnLctnNm>
+     <DstrctNm>Bavaria</DstrctNm>
+     <CtrySubDvsn>Bavaria</CtrySubDvsn>
+     <Ctry>DE</Ctry>
+    </PstlAdr>
+   </Dbtr>
+   <DbtrAcct>
+    <Id>
+     <IBAN>DE41500105177649559137</IBAN>
+    </Id>
+    <Ccy>EUR</Ccy>
+   </DbtrAcct>
+   <DbtrAgt>
+    <FinInstnId>
+     <BICFI>SOLADESTXXX</BICFI>
+    </FinInstnId>
+   </DbtrAgt>
+   <ChrgBr>SLEV</ChrgBr>
+   <CdtTrfTxInf>
+    <PmtId>
+     <InstrId>b18ec4fe789340eeb85a681458280e8e</InstrId>
+     <EndToEndId>f7f91cad040a43caa30c104f9fa9b848</EndToEndId>
+    </PmtId>
+    <Amt>
+     <InstdAmt Ccy="EUR">3500.0</InstdAmt>
+    </Amt>
+    <CdtrAgt>
+     <FinInstnId>
+      <BICFI>GENODEFFXXX</BICFI>
+     </FinInstnId>
+    </CdtrAgt>
+    <Cdtr>
+     <Nm>GreenTech Solutions AG</Nm>
+     <PstlAdr>
+      <TwnNm>Frankfurt</TwnNm>
+      <Ctry>DE</Ctry>
+     </PstlAdr>
+    </Cdtr>
+    <CdtrAcct>
+     <Id>
+      <IBAN>DE10500105179668777364</IBAN>
+     </Id>
+    </CdtrAcct>
+    <RmtInf>
+     <Strd>
+      <CdtrRefInf>
+       <Tp>
+        <CdOrPrtry>
+         <Cd>SCOR</Cd>
+        </CdOrPrtry>
+        <Issr>Bayer Health</Issr>
+       </Tp>
+       <Ref>ABH756354</Ref>
+      </CdtrRefInf>
+     </Strd>
+    </RmtInf>
+   </CdtTrfTxInf>
+  </PmtInf>
+ </CstmrCdtTrfInitn>
+</Document>
+

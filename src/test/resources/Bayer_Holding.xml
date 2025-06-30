@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09 pain.001.001.09.xsd">
+ <CstmrCdtTrfInitn>
+  <GrpHdr>
+   <MsgId>MSG1026</MsgId>
+   <CreDtTm>2025-04-04T12:57:29</CreDtTm>
+   <NbOfTxs>1</NbOfTxs>
+   <CtrlSum>1500.0</CtrlSum>
+   <InitgPty>
+    <Nm>Bayerland Holding</Nm>
+   </InitgPty>
+  </GrpHdr>
+  <PmtInf>
+   <PmtInfId>d4761954b3f34f3387af7c6d585a8b5c</PmtInfId>
+   <PmtMtd>TRF</PmtMtd>
+   <BtchBookg>false</BtchBookg>
+   <NbOfTxs>1</NbOfTxs>
+   <CtrlSum>1500.0</CtrlSum>
+   <PmtTpInf>
+    <InstrPrty>NORM</InstrPrty>
+    <SvcLvl>
+     <Cd>SEPA</Cd>
+    </SvcLvl>
+   </PmtTpInf>
+   <ReqdExctnDt>
+    <Dt>2025-04-04</Dt>
+   </ReqdExctnDt>
+   <Dbtr>
+    <Nm>Bayerland Holding</Nm>
+    <PstlAdr>
+     <Dept>Finance</Dept>
+     <SubDept>Accounts Payable</SubDept>
+     <StrtNm>Leopoldstrasse</StrtNm>
+     <BldgNb>50</BldgNb>
+     <BldgNm>Alpha Tower</BldgNm>
+     <Flr>8</Flr>
+     <PstBx>80802</PstBx>
+     <Room>802</Room>
+     <PstCd>80802</PstCd>
+     <TwnNm>Munich</TwnNm>
+     <TwnLctnNm>Schwabing</TwnLctnNm>
+     <DstrctNm>Bavaria</DstrctNm>
+     <CtrySubDvsn>Upper Bavaria</CtrySubDvsn>
+     <Ctry>DE</Ctry>
+    </PstlAdr>
+   </Dbtr>
+   <DbtrAcct>
+    <Id>
+     <IBAN>DE96500105171133731557</IBAN>
+    </Id>
+    <Ccy>EUR</Ccy>
+   </DbtrAcct>
+   <DbtrAgt>
+    <FinInstnId>
+     <BICFI>DEUTDEFFXXX</BICFI>
+    </FinInstnId>
+   </DbtrAgt>
+   <ChrgBr>SLEV</ChrgBr>
+   <CdtTrfTxInf>
+    <PmtId>
+     <InstrId>5cf9fc40923b4af880eabe814ad5d494</InstrId>
+     <EndToEndId>c821f89b2e2a40dda356093aea3216cd</EndToEndId>
+    </PmtId>
+    <Amt>
+     <InstdAmt Ccy="EUR">1500.0</InstdAmt>
+    </Amt>
+    <CdtrAgt>
+     <FinInstnId>
+      <BICFI>COBADEFFXXX</BICFI>
+     </FinInstnId>
+    </CdtrAgt>
+    <Cdtr>
+     <Nm>AgroVita GmbH</Nm>
+     <PstlAdr>
+      <PstCd>60325</PstCd>
+      <TwnNm>Frankfurt</TwnNm>
+      <Ctry>DE</Ctry>
+     </PstlAdr>
+    </Cdtr>
+    <CdtrAcct>
+     <Id>
+      <IBAN>DE03500105172721157728</IBAN>
+     </Id>
+    </CdtrAcct>
+   </CdtTrfTxInf>
+  </PmtInf>
+ </CstmrCdtTrfInitn>
+</Document>
+
