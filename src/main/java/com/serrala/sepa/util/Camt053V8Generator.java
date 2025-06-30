@@ -102,6 +102,30 @@ public class Camt053V8Generator {
         w.writeEndElement(); // DateAndDateTime2Choice
         w.writeEndElement(); // Bal
 
+        // Closing balance must appear before any entries according to the XSD
+        w.writeStartElement("Bal");
+        w.writeStartElement("Tp");
+        w.writeStartElement("CdOrPrtry");
+        w.writeStartElement("Cd");
+        w.writeCharacters("CLBD");
+        w.writeEndElement();
+        w.writeEndElement();
+        w.writeEndElement();
+        w.writeStartElement("Amt");
+        w.writeAttribute("Ccy", statement.getAccountCurrency());
+        w.writeCharacters("0.00");
+        w.writeEndElement();
+        w.writeStartElement("CdtDbtInd");
+        w.writeCharacters("CRDT");
+        w.writeEndElement();
+        w.writeStartElement("Dt");
+        w.writeStartElement("Dt");
+        w.writeCharacters(statement.getPeriodTo() != null ? statement.getPeriodTo()
+                : new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()));
+        w.writeEndElement(); // Dt
+        w.writeEndElement();
+        w.writeEndElement(); // Bal
+
         w.writeStartElement("Ntry");
         List<SepaTransaction> txs = statement.getTransactions();
         for (SepaTransaction tx : txs) {
@@ -209,29 +233,6 @@ public class Camt053V8Generator {
             w.writeEndElement(); // NtryDtls
         }
         w.writeEndElement(); // Ntry
-
-        w.writeStartElement("Bal");
-        w.writeStartElement("Tp");
-        w.writeStartElement("CdOrPrtry");
-        w.writeStartElement("Cd");
-        w.writeCharacters("CLBD");
-        w.writeEndElement();
-        w.writeEndElement();
-        w.writeEndElement();
-        w.writeStartElement("Amt");
-        w.writeAttribute("Ccy", statement.getAccountCurrency());
-        w.writeCharacters("0.00");
-        w.writeEndElement();
-        w.writeStartElement("CdtDbtInd");
-        w.writeCharacters("CRDT");
-        w.writeEndElement();
-        w.writeStartElement("Dt");
-        w.writeStartElement("Dt");
-        w.writeCharacters(statement.getPeriodTo() != null ? statement.getPeriodTo()
-                : new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date()));
-        w.writeEndElement(); // Dt
-        w.writeEndElement();
-        w.writeEndElement(); // Bal
         w.writeEndElement(); // Stmt
         w.writeEndElement(); // BkToCstmrStmt
         w.writeEndElement(); // Document
