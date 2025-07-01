@@ -139,7 +139,9 @@ public class Camt053V3Generator {
             w.writeEndElement();
 
             w.writeStartElement("Sts");
+            w.writeStartElement("Cd");
             w.writeCharacters("BOOK");
+            w.writeEndElement();
             w.writeEndElement(); // Sts
 
             if (tx.getBookingDate() != null) {
