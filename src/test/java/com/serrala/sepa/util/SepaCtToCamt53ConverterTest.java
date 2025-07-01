@@ -20,5 +20,9 @@ public class SepaCtToCamt53ConverterTest extends TestCase {
         assertNotNull(result.getCamt53V8Xml());
         assertTrue(result.getCamt53V3Xml().contains("urn:iso:std:iso:20022:tech:xsd:camt.053.001.03"));
         assertTrue(result.getCamt53V8Xml().contains("urn:iso:std:iso:20022:tech:xsd:camt.053.001.08"));
+
+        // verify mapping of message id and creditor account
+        assertTrue(result.getCamt53V8Xml().contains("<MsgId>MSG1090-STMT</MsgId>"));
+        assertTrue(result.getCamt53V8Xml().contains("<IBAN>DE10500105179668777364</IBAN>"));
     }
 }
